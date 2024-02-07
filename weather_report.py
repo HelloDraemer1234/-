@@ -132,7 +132,7 @@ def weather_report(this_city):
 
 
 
-def send_weather(access_token, weather):
+def send_weather1(access_token, weather):
     # touser 就是 openID
     # template_id 就是模板ID
     # url 就是点击模板跳转的url
@@ -144,7 +144,7 @@ def send_weather(access_token, weather):
 
     #####OPEN_ID1############################################################################################
     body1 = {
-        "touser": openId1.strip(),
+        "touser1": openId1.strip(),
         "template_id": weather_template_id.strip(),
         "url": "https://weixin.qq.com",
         "data": {
@@ -172,14 +172,14 @@ def send_weather(access_token, weather):
     print(requests.post(url, json.dumps(body1)).text)
     
     
-def weather_report(this_city):
+def weather_report1(this_city):
     # 1.获取access_token
     access_token = get_access_token()
     # 2. 获取天气
     weather = get_weather(this_city)
     print(f"天气信息： {weather}")
     # 3. 发送消息
-    send_weather(access_token, weather)
+    send_weather1(access_token, weather)
 
 
 
