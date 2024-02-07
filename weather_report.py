@@ -119,8 +119,8 @@ def send_weather(access_token, weather):
     print(requests.post(url, json.dumps(body)).text)
     
     #####OPEN_ID1############################################################################################
-    body = {
-        "touser": openId1.strip(),
+    body1 = {
+        "touser1": openId1.strip(),
         "template_id": weather_template_id.strip(),
         "url": "https://weixin.qq.com",
         "data": {
@@ -145,7 +145,7 @@ def send_weather(access_token, weather):
         }
     }
     url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
-    print(requests.post(url, json.dumps(body)).text)
+    print(requests.post(url, json.dumps(body1)).text)
 
 
 
