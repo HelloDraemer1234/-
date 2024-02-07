@@ -118,9 +118,33 @@ def send_weather(access_token, weather):
     url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
     print(requests.post(url, json.dumps(body)).text)
     
+    
+def weather_report(this_city):
+    # 1.获取access_token
+    access_token = get_access_token()
+    # 2. 获取天气
+    weather = get_weather(this_city)
+    print(f"天气信息： {weather}")
+    # 3. 发送消息
+    send_weather(access_token, weather)
+
+
+
+
+
+def send_weather(access_token, weather):
+    # touser 就是 openID
+    # template_id 就是模板ID
+    # url 就是点击模板跳转的url
+    # data就按这种格式写，time和text就是之前{{time.DATA}}中的那个time，value就是你要替换DATA的值
+
+    import datetime
+    today = datetime.date.today()
+    today_str = today.strftime("%Y年%m月%d日")
+
     #####OPEN_ID1############################################################################################
     body1 = {
-        "touser1": openId1.strip(),
+        "touser": openId1.strip(),
         "template_id": weather_template_id.strip(),
         "url": "https://weixin.qq.com",
         "data": {
@@ -146,9 +170,8 @@ def send_weather(access_token, weather):
     }
     url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
     print(requests.post(url, json.dumps(body1)).text)
-
-
-
+    
+    
 def weather_report(this_city):
     # 1.获取access_token
     access_token = get_access_token()
@@ -157,6 +180,8 @@ def weather_report(this_city):
     print(f"天气信息： {weather}")
     # 3. 发送消息
     send_weather(access_token, weather)
+
+
 
 
 
