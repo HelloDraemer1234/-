@@ -30,9 +30,9 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run weather Report
       run: |
-        python weather_report.py
+        python weather_report1.py
       env:
         APP_ID: ${{ secrets.APP_ID }}
         APP_SECRET: ${{ secrets.APP_SECRET }}
-        OPEN_ID: ${{ secrets.OPEN_ID }}
+        OPEN_ID: ${{ secrets.OPEN_ID1 }}
         TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
