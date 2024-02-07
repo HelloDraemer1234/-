@@ -9,6 +9,7 @@ appID = os.environ.get("APP_ID")
 appSecret = os.environ.get("APP_SECRET")
 # 收信人ID即 用户列表中的微信号
 openId = os.environ.get("OPEN_ID")
+openId1 = os.environ.get("OPEN_ID1")
 # 天气预报模板ID
 weather_template_id = os.environ.get("TEMPLATE_ID")
 
@@ -88,8 +89,38 @@ def send_weather(access_token, weather):
     today = datetime.date.today()
     today_str = today.strftime("%Y年%m月%d日")
 
+    #####OPEN_ID############################################################################################
     body = {
         "touser": openId.strip(),
+        "template_id": weather_template_id.strip(),
+        "url": "https://weixin.qq.com",
+        "data": {
+            "date": {
+                "value": today_str
+            },
+            "region": {
+                "value": weather[0]
+            },
+            "weather": {
+                "value": weather[2]
+            },
+            "temp": {
+                "value": weather[1]
+            },
+            "wind_dir": {
+                "value": weather[3]
+            },
+            "today_note": {
+                "value": get_daily_love()
+            }
+        }
+    }
+    url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}'.format(access_token)
+    print(requests.post(url, json.dumps(body)).text)
+    
+    #####OPEN_ID1############################################################################################
+    body = {
+        "touser": openId1.strip(),
         "template_id": weather_template_id.strip(),
         "url": "https://weixin.qq.com",
         "data": {
